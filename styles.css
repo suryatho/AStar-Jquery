@@ -1,0 +1,51 @@
+body {
+    text-align: center;
+}
+
+h1 {
+    margin: none;
+    font-family: 'Courier New', Courier;
+}
+
+#board {
+    font-size: 0;
+    display: inline-block;
+    border: 0.5vmin solid rgb(71, 71, 71);
+}
+
+.col {
+    display: inline-block;
+}
+
+.cell {
+    background-color: rgb(197, 197, 197);
+    width: 3vmin;
+    height: 3vmin;
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+    transition: all 100ms;
+}
+
+.cell[data-open="true"] {
+    background-color: rgb(127, 173, 127);
+}
+
+.cell[data-closed="true"] {
+    background-color: rgb(173, 127, 127);
+}
+
+.cell[data-path="true"] {
+    background-color: rgb(91, 95, 153);
+}
+
+.cell[data-obstacle="true"] {
+    background-color: rgb(49, 49, 49);
+}
+
+.col:last-child .cell {
+    border-right: none;
+}
+
+.cell:last-child {
+    border-bottom: none;
+}
