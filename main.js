@@ -22,6 +22,7 @@ function setup() {
 	start.g = 0;
 	start.obstacle = false;
 	end.obstacle = false;
+	//supposed to ensure that there won't be any obstacles around the starting and ending node
 	start.neighbors.forEach(n => n.obstacle = false);
 	end.neighbors.forEach(n => n.obstacle = false);
 	//pushing start to the open set to start the pathfinding

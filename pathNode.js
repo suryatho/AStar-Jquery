@@ -17,7 +17,7 @@ class pathNode {
     getNeighbors(grid) {
         for (let i = -1; i <= 1; i++) {
             for (let j = -1; j <= 1; j++) {
-                //This if statment controls wether or not we want the thing to go diagonal
+                //This if statment controls wether or not we want the thing to go diagonal, diag>> tho so don't uncomment
                 // if (Math.abs(i) == Math.abs(j)) continue;
                 const nx = i + this.x;
                 const ny = j + this.y;
