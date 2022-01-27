@@ -7,7 +7,7 @@ class pathNode {
 
         this.root = undefined;
         this.neighbors = [];
-        this.obstacle = Math.random() <= 0.2;
+        this.obstacle = Math.random() <= 0.4;
 
         this.f = Infinity;
         this.g = Infinity;
@@ -17,13 +17,20 @@ class pathNode {
     getNeighbors(grid) {
         for (let i = -1; i <= 1; i++) {
             for (let j = -1; j <= 1; j++) {
-                if (Math.abs(i) == Math.abs(j)) continue;
+                //This if statment controls wether or not we want the thing to go diagonal
+                // if (Math.abs(i) == Math.abs(j)) continue;
                 const nx = i + this.x;
                 const ny = j + this.y;
                 if (nx < 0 || nx > this.cols - 1 ||
                     ny < 0 || ny > this.rows - 1) continue;
                 this.neighbors.push(grid[nx][ny]);
             }
+        }
+
+        const thereAreNeighbors = this.neighbors.some(n => !n.obstacle);
+        if (!thereAreNeighbors) {
+            const randomNeighbor = this.neighbors[Math.floor(Math.random() * this.neighbors.length)];
+            randomNeighbor.obstacle = false;
         }
     }
 

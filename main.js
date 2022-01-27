@@ -1,7 +1,7 @@
 $(setup);
 const board = $("#board");
-const cols = 20;
-const rows = 20;
+const cols = 30;
+const rows = 30;
 
 let grid = [],
 	openSet = [],
@@ -22,6 +22,8 @@ function setup() {
 	start.g = 0;
 	start.obstacle = false;
 	end.obstacle = false;
+	start.neighbors.forEach(n => n.obstacle = false);
+	end.neighbors.forEach(n => n.obstacle = false);
 	//pushing start to the open set to start the pathfinding
 	openSet.push(start);
 	//Making the grid in the DOM
@@ -34,7 +36,7 @@ function setup() {
 
 function update() {
 	if (openSet.length > 0) {
-		//Do something/ A*
+		//Do something A*
 		$("h1").text("A* Searching...");
 		//Getting the node with the lowest f in openset
 		current = openSet.reduce((lowest, cell) => {
