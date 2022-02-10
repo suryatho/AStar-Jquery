@@ -27,11 +27,28 @@ class pathNode {
             }
         }
 
-        const thereAreNeighbors = this.neighbors.some(n => !n.obstacle);
-        if (!thereAreNeighbors) {
-            const randomNeighbor = this.neighbors[Math.floor(Math.random() * this.neighbors.length)];
+        //code to make sure we have solution, don't ask why its so complicated
+        const changeNeighbors = this.getNeighborsGreaterThanTwo(this.neighbors);
+        if (!changeNeighbors && this.obstacle) {
+            this.obstacle = false;
+            return;
+        }
+        if (!changeNeighbors) {
+            let randomNeighbor = {obstacle: false}
+            while(randomNeighbor.obstacle) {
+                randomNeighbor = this.neighbors[Math.floor(Math.random() * this.neighbors.length)];
+            }
             randomNeighbor.obstacle = false;
         }
+    }
+
+    //irrelevant helper function for ^^
+    getNeighborsGreaterThanTwo(neighbors) {
+        let count=0;
+        for (let i=0; i<neighbors.length; i++) {
+            if (!neighbors[i].obstacle) count++;
+        }
+        return count >=2;
     }
 
     getDist(pos) {
